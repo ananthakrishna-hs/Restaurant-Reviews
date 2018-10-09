@@ -8,7 +8,7 @@ var markers = []
  * Register the service worker if compatible with the browser
  */
 if(navigator.serviceWorker) {
-  navigator.serviceWorker.register('/service_worker/sw.js').then(function(register) {
+  navigator.serviceWorker.register('/sw.js').then(function(register) {
     console.log("Service worker registered");
   }).catch(function(err) {
     console.log(`Service worker couldnot be registered because ${err} `);

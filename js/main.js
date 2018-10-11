@@ -7,13 +7,13 @@ var markers = []
 /**
  * Register the service worker if compatible with the browser
  */
-if(navigator.serviceWorker) {
+/*if(navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js').then(function(register) {
     console.log("Service worker registered");
   }).catch(function(err) {
     console.log(`Service worker couldnot be registered because ${err} `);
   });
-}
+}*/
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
 });
+
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -171,6 +172,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = "" + restaurant.name + " image";
   li.append(image);
 
   const name = document.createElement('h1');
@@ -188,7 +190,12 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute("role", "button");
+  const aria_label = "View details of " + restaurant.name;
+  more.setAttribute("aria-label", aria_label);
   li.append(more);
+
+  li.classList.add("restaurant-list-item");
 
   return li
 }
@@ -219,3 +226,13 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
+/**
+ * Disable tab focus of map container and map attribution links
+ */
+document.addEventListener("DOMContentLoaded", function() {
+  Array.from(document.getElementsByClassName("leaflet-control-attribution")).forEach(function(element) {
+    Array.from(element.children).forEach(function(child) {
+      child.tabIndex=-1;
+    });
+  });
+});

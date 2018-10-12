@@ -7,13 +7,13 @@ var markers = []
 /**
  * Register the service worker if compatible with the browser
  */
-/*if(navigator.serviceWorker) {
+if(navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js').then(function(register) {
     console.log("Service worker registered");
   }).catch(function(err) {
     console.log(`Service worker couldnot be registered because ${err} `);
   });
-}*/
+}
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -91,9 +91,9 @@ initMap = () => {
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
     mapboxToken: 'pk.eyJ1Ijoic3J0MTAwIiwiYSI6ImNqbXFseXphaDFjMzgzcHFjZ2t0czI1YjQifQ.A-uhHN9qH3t-vrDNgqfCYg',
     maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" tabindex="-1">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/" tabindex="-1">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://www.mapbox.com/" tabindex="-1">Mapbox</a>',
     id: 'mapbox.streets'
   }).addTo(newMap);
 
@@ -226,13 +226,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
-/**
- * Disable tab focus of map container and map attribution links
- */
-document.addEventListener("DOMContentLoaded", function() {
-  Array.from(document.getElementsByClassName("leaflet-control-attribution")).forEach(function(element) {
-    Array.from(element.children).forEach(function(child) {
-      child.tabIndex=-1;
-    });
-  });
-});

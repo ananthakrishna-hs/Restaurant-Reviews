@@ -1,7 +1,7 @@
 /**
  * Listen for 'install' event and cache required assets after event completion
  */
-/*self.addEventListener("install", function(event) {
+self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open('version-1.0.0').then(function(c) {
       return c.addAll([
@@ -27,7 +27,7 @@
       ]);
     })
   );
-});*/
+});
 
 /**
  * Listen for any 'fetch' event and respond with cached response if cached 
@@ -35,7 +35,7 @@
  * fetch from server and whilst the service-worker caches the new request-response pair.
  * Note: 
  */
-/*self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
       if(response) 
@@ -57,4 +57,4 @@
       }
     })
   );
-});*/
+});

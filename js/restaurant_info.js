@@ -24,13 +24,13 @@ initMap = () => {
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1Ijoic3J0MTAwIiwiYSI6ImNqbXFseXphaDFjMzgzcHFjZ2t0czI1YjQifQ.A-uhHN9qH3t-vrDNgqfCYg',
         maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" tabindex="-1">OpenStreetMap</a> contributors, ' +
-          '<a href="https://creativecommons.org/licenses/by-sa/2.0/" tabindex="-1">CC-BY-SA</a>, ' +
-          'Imagery © <a href="https://www.mapbox.com/" tabindex="-1">Mapbox</a>',
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'    
       }).addTo(newMap);
-      fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
+      fillBreadcrumb();
     }
   });
 }  
@@ -81,17 +81,24 @@ fetchRestaurantFromURL = (callback) => {
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
+  name.setAttribute("aria-label", `Restaurant name is ${restaurant.name}`);
+  name.tabIndex = 0;
   name.innerHTML = restaurant.name;
 
   const address = document.getElementById('restaurant-address');
+  address.setAttribute("aria-label", `Address ${restaurant.address}`);
+  address.tabIndex = 0;
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
-  image.alt = "" + restaurant.name + " image";
+  image.alt = "Image of" + restaurant.name;
+  image.tabIndex = 0;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
+  cuisine.setAttribute("aria-label", `Cuisine of the restaurant ${restaurant.cuisine_type}`);
+  cuisine.tabIndex = 0;
   cuisine.innerHTML = restaurant.cuisine_type;
 
   // fill operating hours
@@ -109,6 +116,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   const hours = document.getElementById('restaurant-hours');
   for (let key in operatingHours) {
     const row = document.createElement('tr');
+    row.tabIndex = 0;
 
     const day = document.createElement('td');
     day.innerHTML = key;
@@ -118,6 +126,8 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     time.innerHTML = operatingHours[key];
     row.appendChild(time);
 
+    let regex = /-/g;
+    row.setAttribute("aria-label", `${key} ${operatingHours[key].replace(regex, "to")}`);
     hours.appendChild(row);
   }
 }
@@ -152,17 +162,25 @@ createReviewHTML = (review) => {
   const name = document.createElement('p');
   name.innerHTML = review.name;
   li.appendChild(name);
+  li.tabIndex = 0;
+  li.setAttribute("aria-label", `Review card`);
+  name.tabIndex = 0;
+  name.setAttribute("aria-label", `review by ${review.name}`);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
+  date.tabIndex = 0;
+  date.setAttribute("aria-label", `dated ${review.date}`);
   li.appendChild(date);
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
+  rating.tabIndex = 0;
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.tabIndex = 0;
   li.appendChild(comments);
 
   return li;
@@ -176,6 +194,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
   breadcrumb.appendChild(li);
+  focus_items();
 }
 
 /**
@@ -192,4 +211,12 @@ getParameterByName = (name, url) => {
   if (!results[2])
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function focus_items() {
+  Array.from(document.getElementsByClassName("leaflet-control-attribution")).forEach(function(element) {
+    Array.from(element.children).forEach(function(child) {
+      child.tabIndex=-1;
+    });
+  });
 }

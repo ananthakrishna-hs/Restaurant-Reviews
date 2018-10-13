@@ -77,6 +77,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     option.value = cuisine;
     select.append(option);
   });
+  focus_list();
 }
 
 /**
@@ -91,9 +92,9 @@ initMap = () => {
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
     mapboxToken: 'pk.eyJ1Ijoic3J0MTAwIiwiYSI6ImNqbXFseXphaDFjMzgzcHFjZ2t0czI1YjQifQ.A-uhHN9qH3t-vrDNgqfCYg',
     maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" tabindex="-1">OpenStreetMap</a> contributors, ' +
-      '<a href="https://creativecommons.org/licenses/by-sa/2.0/" tabindex="-1">CC-BY-SA</a>, ' +
-      'Imagery © <a href="https://www.mapbox.com/" tabindex="-1">Mapbox</a>',
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
   }).addTo(newMap);
 
@@ -168,31 +169,39 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
+  li.tabIndex = 0;
+  li.setAttribute("aria-label", `restaurant card of ${restaurant.name}`);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.alt = "" + restaurant.name + " image";
+  image.alt = "Image of" + restaurant.name;
+  image.tabIndex = 0;
   li.append(image);
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
+  name.setAttribute("aria-label", `Restaurant name is ${restaurant.name}`);
+  name.tabIndex = 0;
   li.append(name);
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.setAttribute("aria-label", `In the neighborhood of ${restaurant.neighborhood}`);
+  neighborhood.tabIndex = 0;
   li.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
+  address.setAttribute("aria-label", `Address ${restaurant.address}`);
+  address.tabIndex = 0;
   li.append(address);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   more.setAttribute("role", "button");
-  const aria_label = "View details of " + restaurant.name;
-  more.setAttribute("aria-label", aria_label);
+  more.setAttribute("aria-label", `View details of ${restaurant.name}`);
   li.append(more);
 
   li.classList.add("restaurant-list-item");
@@ -226,3 +235,10 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
+function focus_list() {
+  Array.from(document.getElementsByClassName("leaflet-control-attribution")).forEach(function(element) {
+    Array.from(element.children).forEach(function(child) {
+      child.tabIndex=-1;
+    });
+  });
+}

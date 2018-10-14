@@ -92,7 +92,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
-  image.alt = "Image of" + restaurant.name;
+  image.alt = "Image of" + restaurant.name + " restaurant";
   image.tabIndex = 0;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
@@ -126,8 +126,9 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     time.innerHTML = operatingHours[key];
     row.appendChild(time);
 
-    let regex = /-/g;
-    row.setAttribute("aria-label", `${key} ${operatingHours[key].replace(regex, "to")}`);
+    let regex1 = /-/g;
+    let regex2 = /,/g;
+    row.setAttribute("aria-label", `${key} ${operatingHours[key].replace(regex1, "to").replace(regex2, " and")}`);
     hours.appendChild(row);
   }
 }

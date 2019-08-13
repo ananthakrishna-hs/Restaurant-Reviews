@@ -20,18 +20,18 @@ Features of the web app:
 ## Setup
 
 ### Requirements
-- Python(2.x or 3.x).
+- `node` and `npm`
 - Browser(preferabaly with service worker suuport).
 - Mapbox API key.
 
 ### Installation
-- Download/ clone the repository.
-- Download python from Python's [website](https://www.python.org/). If you already have python, check its version through `python -v` command in terminal. 
+- Download/clone the repository.
+- Download `node` and `npm` from [Node official website](https://nodejs.org/en/) 
 - This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://www.mapbox.com/). You need to replace `<your MAPBOX API KEY HERE>` with a token from [Mapbox](https://www.mapbox.com/). Mapbox is free to use, and does not require any payment information.
-- In terminal change directory to the downloaded folder and run the command:
-    - `python -m SimpleHTTPServer 8000` (or any other port) if Python 2.x
-    - `python -m http.server 8000` (or any other port) if Python 3.x
-- Go to browser and browse to URL: `https://localhost:8000` or your chosen port number.
+- In terminal change directory to the downloaded folder and run the commands one by none: 
+    - `npm install`
+    - `http-server [port-number(optional)]`
+- Go to browser and browse to URL: `https://localhost:8080` or your chosen port number.
 
 
 

@@ -1,0 +1,22 @@
+{
+  "name": "restaurant-reviews-api",
+  "version": "1.0.0",
+  "description": "> Uses Mapbox maps API to fetch data of restaurants as JSON and feed to the interface. ---",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ananthakrishna-hs/Restaurant-Reviews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ananthakrishna-hs/Restaurant-Reviews/issues"
+  },
+  "homepage": "https://github.com/ananthakrishna-hs/Restaurant-Reviews#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}

@@ -30,7 +30,7 @@ Features of the web app:
 - This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://www.mapbox.com/). You need to replace `<your MAPBOX API KEY HERE>` with a token from [Mapbox](https://www.mapbox.com/). Mapbox is free to use, and does not require any payment information.
 - In terminal change directory to the downloaded folder and run the commands one by none: 
     - `npm install`
-    - `http-server [port-number(optional)]`
+    - `npm run server`
 - Go to browser and browse to URL: `https://localhost:8080` or your chosen port number.
 
 

@@ -4,7 +4,8 @@
   "description": "> Uses Mapbox maps API to fetch data of restaurants as JSON and feed to the interface. ---",
   "main": "sw.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server"
   },
   "repository": {
     "type": "git",

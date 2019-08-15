@@ -4,12 +4,13 @@ let static_cache = 'restaurant-reviews-v-1.0.0';
  * Listen for 'install' event and cache required assets after event completion
  */
 self.addEventListener("install", function(event) {
-  self.skipWaiting();
+  //self.skipWaiting(); /*Optional*/
   event.waitUntil(
     caches.open(static_cache).then(function(c) {
       return c.addAll([
         '/',
         '/css/styles.css',
+        'css/reset.css',
         '/data/restaurants.json',
         '/img/1.jpg',
         '/img/2.jpg',

@@ -1,4 +1,4 @@
-let static_cache = 'restaurant-reviews-v-1.0.0';
+let static_cache = 'restaurant-reviews-v-1.0.1';
 
 /**
  * Listen for 'install' event and cache required assets after event completion
@@ -10,7 +10,7 @@ self.addEventListener("install", function(event) {
       return c.addAll([
         '/',
         '/css/styles.css',
-        'css/reset.css',
+        '/css/reset.css',
         '/data/restaurants.json',
         '/img/1.jpg',
         '/img/2.jpg',
@@ -27,7 +27,8 @@ self.addEventListener("install", function(event) {
         '/js/main.js',
         '/js/restaurant_info.js',
         '/index.html',
-        '/restaurant.html'
+        '/restaurant.html',
+        '/manifest.json'
       ]);
     })
   );

@@ -50,13 +50,23 @@ gulp.task('data', function() {
 });
 
 gulp.task('images', function() {
-  return gulp.src('public/img/*')
+  var imgs = gulp.src('public/img/*')
   .pipe(imagemin([
     imagemin.gifsicle({interlaced: true}),
     imagemin.jpegtran({progressive: true}),
     imagemin.optipng({optimizationLevel: 5})
   ]))
   .pipe(gulp.dest('dist/img'));
+
+  var icons = gulp.src('public/img/icons/*')
+  .pipe(imagemin([
+    imagemin.gifsicle({interlaced: true}),
+    imagemin.jpegtran({progressive: true}),
+    imagemin.optipng({optimizationLevel: 5})
+  ]))
+  .pipe(gulp.dest('dist/img/icons'));
+
+  return merge(imgs, icons);
 });
 
 gulp.task('default', gulp.series('copyHTML', 'styles', 'scripts', 'data', 'images'));

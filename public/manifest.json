@@ -2,27 +2,11 @@
   "name": "Upahara",
   "short_name": "Upahara",
   "icons": [{
-    "src": "img/offline.png",
-    "sizes": "128x128",
-    "type": "image/png"
-    }, {
-    "src": "img/offline.png",
-    "sizes": "144x144",
-    "type": "image/png"
-    }, {
-    "src": "img/offline.png",
-    "sizes": "152x152",
-    "type": "image/png"
-    }, {
-    "src": "img/offline.png",
+    "src": "img/icons/android-chrome-192x192",
     "sizes": "192x192",
     "type": "image/png"
     }, {
-    "src": "img/offline.png",
-    "sizes": "256x256",
-    "type": "image/png"
-    }, {
-    "src": "img/offline.png",
+    "src": "img/icons/android-chrome-512x512",
     "sizes": "512x512",
     "type": "image/png"
     }],

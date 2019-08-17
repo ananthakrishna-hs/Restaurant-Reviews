@@ -1,4 +1,4 @@
-let static_cache = 'restaurant-reviews-v-1.0.1';
+let static_cache = 'restaurant-reviews-v-1.0.2';
 
 /**
  * Listen for 'install' event and cache required assets after event completion
@@ -22,6 +22,11 @@ self.addEventListener("install", function(event) {
         '/img/8.jpg',
         '/img/9.jpg',
         '/img/10.jpg',
+        '/img/icons/android-chrome-192x192.png',
+        '/img/icons/android-chrome-512x512.png',
+        '/img/icons/apple-touch-icon.png',
+        '/img/icons/favicon-16x16.png',
+        '/img/icons/favicon-32x32.png',
         '/img/offline.png',
         '/js/dbhelper.js',
         '/js/main.js',
